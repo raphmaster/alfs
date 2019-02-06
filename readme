@@ -25,4 +25,4 @@ procs: the number of maximum processors to use
 [start]: the optional starting package in dependencies file
 
 NOTES:
-for the lfs dependencies file "lfs-deps", all files needed by scripts after the "transition" dependency need to be in the same directory as the scripts/ directory. this is because the transition script chroot to working directory and all files next to scripts/ directory get copied to working directory. alfs script get reexecuted with the new root directory as the working directory and all files required in it.
+for the lfs tools dependencies file "lfs-tools-deps", all files needed by scripts after the "chroot" dependency need to be in the same directory as the scripts/ directory. this is because the "chroot" script change root to the working directory and all files next to scripts/ directory get copied to working directory. alfs script get reexecuted within the the working directory as the new root with all files required in it.
