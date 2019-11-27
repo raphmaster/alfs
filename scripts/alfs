@@ -11,7 +11,7 @@ based on a csv dependencies file, alfs execute package scripts to build dependen
 all package scripts must be placed in the same directory as this script.
 in the dependencies file, all package scripts on one line must be successfully executed before executing scripts of the next line.
 each package name in dependencies file must match the name of an executable script in the same directory of alfs script.
-the package names in dependencies file must follow this uasge: [#]package[#param]...
+the package names in dependencies file must follow this rule: [#]package[#param]...
 a # character can be inserted at the beginning of the package name in dependencies file to indicate that the script must be executed in the current shell context, otherwise script are executed in a separate shell context.
 many others # can be inserted after the package name to pass parameters to the package script.
 anything after the double slash charaters "//" on a line will be treated as a comment.

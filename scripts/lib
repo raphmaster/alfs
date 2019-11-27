@@ -1,23 +1,5 @@
 #!/bin/bash +h
 
-#TO BE REMOVED, NO LONGER REQUIRED
-#CSV file l count
-#Parameter 1: CSV file
-#Output: Number of columns
-function column_count
-{
-        local columns=0
-        local x=0
-        local y=0
-        until [ $x -gt $(wc -l $1 | cut -d ' ' -f 1) ]
-        do
-                (( x++ ))
-                y=$(sed "${x}q;d" $1 | tr ',' ' ' | wc -w | cut -d ' ' -f 1)
-                if [ $y -gt $columns ]; then columns=$y; fi
-        done &&
-        echo $columns
-}
-
 #find archive name from package name in package download urls file
 #arg1: package name
 #output: archive name
@@ -60,12 +42,5 @@ function arg_eval
     args[1]=${args[1]:-1} #replace args[1] by 1 if unset or null
 }
 
-#testing purpose only
-function hello
-{
-    echo 'hello world!' &&
-    echo "wdir from function in lib file: $wdir"
-}
-
 #export functions to subshells
-export -f find_archive tar_root extract remove hello
+export -f find_archive tar_root extract remove
