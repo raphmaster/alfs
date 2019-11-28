@@ -27,9 +27,8 @@ if [ $1 -eq 1 ]; then #first pass
     LFS_TGT=$(uname -m)-alfs-linux-gnu &&
     #Make environment variable to be passed to child processes
     export LC_ALL LFS_TGT PATH
-elif [ $1 -eq 2 ]; then #second pass
-    HOME=/root &&
-    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin &&
-    export PS1 HOME TERM PATH &&
-    mkdir -pv /etc
+#elif [ $1 -eq 2 ]; then #second pass
+#    HOME=/root &&
+#    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin &&
+#    export PS1 HOME TERM PATH
 fi

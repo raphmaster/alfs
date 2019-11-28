@@ -1,13 +1,20 @@
 #!/bin/bash +h
 
-#version 3.7.0
+#version 3.7.4
 
 extract $0 &&
-./configure --prefix=/usr --enable-shared --with-system-expat --with-system-ffi --with-ensurepip=yes &&
+if [ $1 -eq 1 ]; then #first pass
+    sed -i '/def add_multiarch_path/a \	return' setup.py &&
+    ./configure --prefix=/tools --without-ensurepip
+elif [ $1 -eq 2 ]; then #second pass
+    ./configure --prefix=/usr --enable-shared --with-system-expat --with-system-ffi --with-ensurepip=yes
+fi &&
 make -j $procs &&
 make -j $procs install &&
-chmod -v 755 /usr/lib/libpython3.7m.so &&
-chmod -v 755 /usr/lib/libpython3.so &&
-install -v -dm755 /usr/share/doc/python-3.7.0/html &&
-tar --strip-components=1 --no-same-owner --no-same-permissions -C /usr/share/doc/python-3.7.0/html -xvf ../python-3.7.0-docs-html.tar.bz2 &&
+if [ $1 -eq 2 ]; then
+    chmod -v 755 /usr/lib/libpython3.7m.so &&
+    chmod -v 755 /usr/lib/libpython3.so &&
+    install -v -dm755 /usr/share/doc/python-3.7.0/html &&
+    tar --strip-components=1 --no-same-owner --no-same-permissions -C /usr/share/doc/python-3.7.0/html -xvf ../python-3.7.0-docs-html.tar.bz2
+fi &&
 remove $0

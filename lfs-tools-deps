@@ -26,10 +26,10 @@ gzip
 make
 patch
 perl
+python
 sed
 tar
 texinfo
-util-linux
 xz
 strip
 vkfs

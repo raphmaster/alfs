@@ -1,6 +1,6 @@
 #!/bin/bash +h
 
-#version 3.1
+#version 3.3
 
 extract $0 &&
 if [ $1 -eq 1 ]; then ./configure --prefix=/tools

@@ -12,6 +12,7 @@ elif [ $1 -eq 2 ]; then #second pass
     ../configure --prefix=/tools --disable-nls --disable-werror --with-lib-path=/tools/lib --with-sysroot
 elif [ $1 -eq 3 ]; then #third pass
     if [[ ! $(expect -c "spawn ls") =~ spawn\ ls ]]; then echo 'Environment is not set up for proper PTY operation!'; exit 1; fi &&
+    sed -i '/@\tincremental_copy/d' gold/testsuite/Makefile.in &&
     ../configure --prefix=/usr --enable-gold --enable-ld=default --enable-plugins --enable-shared --disable-werror --enable-64-bit-bfd --with-system-zlib
 fi &&
 if [ $1 -eq 1 -o $1 -eq 2 ]; then make -j $procs #first/second pass
@@ -22,7 +23,9 @@ if [ $1 -eq 1 ]; then #first pass
 fi &&
 if [ $1 -eq 1 -o $1 -eq 2 ]; then make -j $procs install #first/second pass
 elif [ $1 -eq 3 ]; then #third pass
-    make -j $procs -k check &&
+    make -j $procs -k check
+    read -p 'is binutils test result correct? (y/n) ' &&
+    if [ $REPLY != 'y' ]; then exit 1; fi &&
     make -j $procs tooldir=/usr install
 fi &&
 if [ $1 -eq 2 ]; then #second pass

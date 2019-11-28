@@ -1,10 +1,10 @@
 #!/bin/bash +h
 
-#version 8.3
+#version 9
 
 #copy alfs directory to new root
 #dependencies and package urls files must be in the same directory as scripts directory
 sudo cp -rv ${sdir}.. ${wdir}alfs &&
 #enter chroot and continue executing scripts
-#set start script as first script of lfs-deps to skip wget from checking packages downloads since it is not installed yet
-sudo chroot $wdir /tools/bin/env -i HOME=/root TERM="$TERM" PS1='\u:\w\$ ' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin /tools/bin/bash /alfs/scripts/alfs / /alfs/lfs-deps /alfs/$(basename $packs) $procs '#preparing#2'
+#set start script as first script of lfs-deps to skip wget from checking packages downloads since it is not installed yet and all packages are already downloaded
+sudo chroot $wdir /tools/bin/env -i HOME=/root TERM="$TERM" PS1='\u:\w\$ ' PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin /tools/bin/bash +h /alfs/scripts/alfs / /alfs/lfs-deps /alfs/$(basename $packs) $procs 'essentials'

@@ -3,6 +3,7 @@
 #version 2.69
 
 extract $0 &&
+sed -i '361 s/{/\\{/' bin/autoscan.in &&
 ./configure --prefix=/usr &&
 make -j $procs &&
 make -j $procs install &&

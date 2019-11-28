@@ -1,12 +1,14 @@
 #!/bin/bash +h
 
-#version 4.0.1
+#version 4.0.2
 
 extract $0 &&
-./configure --prefix=/usr --disable-static --enable-thread-safe --docdir=/usr/share/doc/mpfr-4.0.1 &&
+./configure --prefix=/usr --disable-static --enable-thread-safe --docdir=/usr/share/doc/mpfr-4.0.2 &&
 make -j $procs &&
 make -j $procs html &&
-make -j $procs check &&
+make -j $procs check
+read -p 'is mpfr test result correct? (y/n) ' &&
+if [ $REPLY != 'y' ]; then exit 1; fi &&
 make -j $procs install &&
 make -j $procs install-html &&
 remove $0

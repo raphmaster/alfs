@@ -1,17 +1,12 @@
 #!/bin/bash +h
 
-#version 0.19.8.1
+#version 0.20.1
 
 extract $0 &&
 if [ $1 -eq 1 ]; then
-    pushd gettext-tools &&
-    EMACS="no" ./configure --prefix=/tools --disable-shared &&
-    make -j $procs -C gnulib-lib &&
-    make -j $procs -C intl pluralx.c &&
-    make -j $procs -C src msgfmt &&
-    make -j $procs -C src msgmerge &&
-    make -j $procs -C src xgettext &&
-    cp -v src/{msgfmt,msgmerge,xgettext} /tools/bin
+    ./configure --disable-shared &&
+    make -j $procs &&
+    cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /tools/bin
 elif [ $1 -eq 2 ]; then
     sed -i '/^TESTS =/d' gettext-runtime/tests/Makefile.in &&
     sed -i 's/test-lock..EXEEXT.//' gettext-tools/gnulib-tests/Makefile.in &&

@@ -1,6 +1,6 @@
 #!/bin/bash +h
 
-#version 4.5
+#version 4.7
 
 extract $0 &&
 if [ $1 -eq 1 ]; then ./configure --prefix=/tools
@@ -13,7 +13,7 @@ make -j $procs &&
 if [ $1 -eq 2 ]; then make -j $procs html; fi &&
 make -j $procs install &&
 if [ $1 -eq 2 ]; then
-    install -d -m755 /usr/share/doc/sed-4.5 &&
-    install -m644 doc/sed.html /usr/share/doc/sed-4.5
+    install -d -m755 /usr/share/doc/sed-4.7 &&
+    install -m644 doc/sed.html /usr/share/doc/sed-4.7
 fi &&
 remove $0

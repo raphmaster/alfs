@@ -1,6 +1,6 @@
 #!/bin/bash +h
 
-#version 4.16
+#version 5.02
 
 extract $0 &&
 make -j $procs install &&

@@ -1,6 +1,6 @@
 #!/bin/bash +h
 
-#version 8.3
+#version 9
 
 if [ -e /tools/bin/ld-new ]; then
     mv -vf /tools/bin/{ld,ld-old} &&

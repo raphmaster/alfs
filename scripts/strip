@@ -1,6 +1,6 @@
 #!/bin/bash +h
 
-#version 8.3
+#version 9
 
 if [ $1 -eq 1 ]; then
     #strip libraries

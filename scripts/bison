@@ -1,11 +1,13 @@
 #!/bin/bash +h
 
-#version 3.0.5
+#version 3.4.1
 
 extract $0 &&
 if [ $1 -eq 1 ]; then ./configure --prefix=/tools
-elif [ $1 -eq 2 ]; then ./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.0.5
+elif [ $1 -eq 2 ]; then
+    sed -i '6855 s/mv/cp/' Makefile.in &&
+    ./configure --prefix=/usr --docdir=/usr/share/doc/bison-3.4.1
 fi &&
-make -j $procs &&
+make -j 1 &&
 make -j $procs install &&
 remove $0

@@ -1,6 +1,6 @@
 #!/bin/bash +h
 
-#version 8.30
+#version 8.31
 
 extract $0 &&
 if [ $1 -eq 1 ]; then ./configure --prefix=/tools --enable-install-program=hostname

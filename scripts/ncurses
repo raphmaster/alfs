@@ -12,7 +12,9 @@ elif [ $1 -eq 2 ]; then #second pass
 fi &&
 make -j $procs &&
 make -j $procs install &&
-if [ $1 -eq 2 ]; then #second pass
+if [ $1 -eq 1 ]; then #first pass
+    ln -sv libncursesw.so /tools/lib/libncurses.so
+elif [ $1 -eq 2 ]; then #second pass
     mv -vf /usr/lib/libncursesw.so.6* /lib &&
     ln -sfv /lib/$(readlink /usr/lib/libncursesw.so) /usr/lib/libncursesw.so &&
     for lib in ncurses form panel menu

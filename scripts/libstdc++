@@ -1,11 +1,11 @@
 #!/bin/bash +h
 
-#version 8.2.0
+#version 9.2.0
 
 extract gcc &&
 mkdir -pv build &&
 pushd build &&
-../libstdc++-v3/configure --host=$LFS_TGT --prefix=/tools --disable-multilib --disable-nls --disable-libstdcxx-threads --disable-libstdcxx-pch --with-gxx-include-dir=/tools/${LFS_TGT}/include/c++/8.2.0 &&
+../libstdc++-v3/configure --host=$LFS_TGT --prefix=/tools --disable-multilib --disable-nls --disable-libstdcxx-threads --disable-libstdcxx-pch --with-gxx-include-dir=/tools/${LFS_TGT}/include/c++/9.2.0 &&
 make -j $procs &&
 make -j $procs install &&
 remove gcc
